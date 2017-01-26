@@ -1,0 +1,37 @@
+#start label {
+    cursor : help;
+}
+
+body {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2em;
+}
+
+.go-button {
+	background-color:#44c767;
+	-moz-border-radius:12px;
+	-webkit-border-radius:12px;
+	border-radius:12px;
+	border:1px solid #0e8f1b;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	padding:10px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.go-button:hover {
+	background-color:#5cbf2a;
+}
+.go-button:active {
+	position:relative;
+	top:1px;
+}
+
+.validate-text {
+	color: darkred;
+}

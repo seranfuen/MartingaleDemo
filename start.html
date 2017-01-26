@@ -1,0 +1,41 @@
+<div id="start-intro">
+  <p>The Martingale Betting System is one of the best known mathematical fallacies related to gambling. The <a href="https://en.wikipedia.org/wiki/Martingale_(betting_system)">article on Wikipedia</a> clarifies things from a mathematical point of view, but basically the fallacy states that by doubling 
+    the bet, when the odds are 50%, or 1 in 2 (such as two colors, a coin toss...) the player must eventually win.
+  </p>
+  <p>
+    Without doing any analysis, many people believe that this means that when betting larger sums, an eventual win will mean an earning of the ammount that was gambled. Of course, this ignores, on the first instance, the cost
+    of previous bets. It is mathematically proven that for each Martingale game, only the initial quantity that was bet will be won. For instance, if we started with 1 €, 2 €, 4 €, 8 € and then won a 16 € bet, it would mean that 
+    we had to spend <MATH>1+2+4+8 = 15</MATH> on it, thus winning only 1 €.
+  </p>
+  <p>
+    If we wanted a quicker win, let's assume an initial bet of 50 €. The quantity would quickly increase: 50 €, 100 €, 200 €, 400 €, 800 €, 1.600 €... with unlimited money and time, we will eventually win. As most casinos
+    impose credit limits, this method will quickly result in losing everything.
+    
+    The <a href="https://en.wikipedia.org/wiki/Gambler's_fallacy">Gambler's Fallacy</a> is the unfounded belief that these outcomes have memory. That if we keep betting on black, once many reds appear, black must eventually appear. The truth is that the oods are always 1/2. With this 
+    AngularJS powered application the player can bet any amount using a strict Martingale Betting System. 
+  </p>
+  <p>The challenge is on. With reasonable credit limits, can you become rich?</p>
+</div>
+
+<div id="start" ng-init="init()">
+
+    <p>You will need to win {{ game.neededRounds }} rounds to get a profit of {{ game.target }} €. The maximum number of bets per round is {{ game.maxTries }} before you run out of credit</p>
+    <p>Your chances of success are {{game.probabilityFormat}}</p>
+
+    <label title="The initial bet. The higher it is, the more you'll earn per game won, but the more likely you'll go bankrupt" for="initialBet">Initial Bet</label>
+    <input id="initialBet" ng-blur="validateLimits()" ng-model="game.initialBet" />
+    <p class="validate-text"> {{ validation.initialBet }} </p>
+
+    <label title="The maximum credit line from the casino. If it is higher, the chances are slightly better but by doubling the bet each time, it grows exponentially" for="max-bet">Maximum Bet</label>
+    <input id="max-bet"  ng-blur="validateLimits()" ng-model="game.maxBet" />
+    <p class="validate-text"> {{ validation.maxBet }} </p
+
+    <label title="How much you would like to win. If you'd like to win more than the initial bet, you'll have to play several rounds" for="target">Earnings Target</label>
+    <input id="target" ng-model="game.target" />
+    <p class="validate-text"> {{ validation.target }} </p>
+
+    <label title="If this was an investment, what would the yield be? You sure can beat the S&P 500. Or can you?" for="roi">Expected return on investment</label>
+    <input id="roi" ng-model="game.roiFormat" readonly />
+
+    <input id="start-game" ng-click="startGame()" class="go-button" type="submit" value="Start Game" />
+</div>
