@@ -20,7 +20,7 @@
 <div id="start" ng-init="init()">
 
     <p>You will need to win {{ game.neededRounds }} rounds to get a profit of {{ game.target }} €. The maximum number of bets per round is {{ game.maxTries }} before you run out of credit</p>
-    <p>Your chances of success are {{game.probabilityFormat}}</p>
+    <p>Your chances of success are <strong>{{game.probabilityFormat}}</strong></p>
 
     <label title="The initial bet. The higher it is, the more you'll earn per game won, but the more likely you'll go bankrupt" for="initialBet">Initial Bet</label>
     <input id="initialBet" ng-blur="validateLimits()" ng-model="game.initialBet" type="number" min="1" />
@@ -35,7 +35,7 @@
     <p class="validate-text"> {{ validation.target }} </p>
 
     <label title="If this was an investment, what would the yield be? You sure can beat the S&P 500. Or can you?" for="roi">Expected return on investment</label>
-    <input id="roi" ng-model="game.roiFormat" type="number" readonly />
+    <input id="roi" ng-model="game.roiFormat" readonly />
 
     <input id="start-game" ng-click="startGame()" class="go-button" type="submit" value="Start Game" />
 </div>

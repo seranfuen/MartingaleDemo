@@ -89,7 +89,7 @@ body {
 }
 
 #current-bet-info {
-	width: 300px;
+	width: 500px;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
@@ -105,4 +105,21 @@ body {
 	border: 3px solid black;
 	padding: 5px;
 
+}
+
+#game-controls {
+	height: 150px;
+}
+
+#result-message {
+	font-size: 26px;
+	height: 60px;
+}
+
+.good-message {
+	color: green;
+}
+
+.bad-message {
+	color: red;
 }

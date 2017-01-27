@@ -128,18 +128,17 @@
                         game.currentTries = game.maxTries;
                         game.roundHistory = [];
                     } else {
-                        game.gameOver = true;
+                        gameOver = true;
                     }
                 } else {
                     game.currentTries--;
                     if (game.currentTries > 0) {
                         game.currentBet *= 2;
                         roundContinue = true;
-                        game.roundHistory.push(betResult.color);
+                        game.roundHistory.push(randomColor);
                     } else {
                         gameOver = true;
-                        game.gameOver = true;
-                    }
+                   }
                 }
                 betResult = {
                     color : randomColor,
@@ -191,6 +190,53 @@
 
         $scope.placeBet = function(color) {
             var result = $gameService.playBet(color);
+            $scope.$broadcast("betPlaced", result);
+        };
+    });
+
+    app.directive("betButtons", function() {
+        return {
+            templateUrl: "buttons.html",
+            link: function(scope, element, attr) {
+
+                function getMessageClass(result) {
+                    if (result.gameWon || result.betWon) {
+                        return "good-message";
+                    } 
+                    else {
+                        return "bad-message";
+                    }
+                }
+
+                function getMessage(result) {
+                    if (result.gameOver) {
+                        if (result.gameWon) {
+                            return "You won the game!";
+                        } 
+                        else {
+                            return "You ran out of money. You are now in debt and broke!";
+                        }
+                    } 
+                    else if (result.betWon) {
+                        return "You won the bet. Continue to the next round";
+                    } 
+                    else {
+                        return "You lost your bet. You are doubling your wager now to try to compensate";
+                    }
+                }
+
+                function setMessage(result) {
+                    scope.messageClass = getMessageClass(result);
+                    scope.resultMessage = getMessage(result);
+                }
+
+                scope.$on("betPlaced", function(events, args) {
+                    setMessage(args);
+                    if (args.gameOver) {
+                        $("#button-container").fadeOut("fast");
+                    }
+                });
+            }
         };
     });
 })();
