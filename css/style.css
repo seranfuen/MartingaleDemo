@@ -35,3 +35,74 @@ body {
 .validate-text {
 	color: darkred;
 }
+
+.red-button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #cf866c;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #cf866c;
+	box-shadow:inset 0px 1px 0px 0px #cf866c;
+	background-color:#e32d00;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #942911;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:22px;
+	padding:12px 21px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #854629;
+}
+.red-button:hover {
+	background-color:#ff2b00;
+}
+.red-button:active {
+	position:relative;
+	top:1px;
+}
+
+.black-button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #302c2b;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #302c2b;
+	box-shadow:inset 0px 1px 0px 0px #302c2b;
+	background-color:#000000;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #2e2e2e;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:22px;
+	padding:12px 21px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #292321;
+}
+.black-button:hover {
+	background-color:#4a4a4a;
+}
+.black-button:active {
+	position:relative;
+	top:1px;
+}
+
+#current-bet-info {
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.bet-quantity {
+	width: 150px;
+	margin-top: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 30px;
+	font-weight: bold;
+	border: 3px solid black;
+	padding: 5px;
+
+}

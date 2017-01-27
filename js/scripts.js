@@ -5,6 +5,9 @@
         $routeProvider.when("/", {
             templateUrl : "start.html",
             controller : "GameController"
+        }).when("/game", {
+            templateUrl : "game.html",
+            controller: "RoundController"
         });
     });
 
@@ -29,14 +32,25 @@
             if (hasValidData()) {
                 game.neededRounds = Math.ceil(game.target /  game.initialBet);
                 game.maxTries = Math.floor(Math.log2(game.maxBet / game.initialBet) + 1);
+                game.currentTries = game.maxTries;
                 game.probability = Math.pow(1 - Math.pow(1/2, game.maxTries), game.neededRounds);
                 game.probabilityFormat = game.probability.toFixed(2) + " in 1";
             } else {
                 game.neededRounds = 0;
                 game.maxTries = 0;
+                game.currentTries = 0;
                 game.probabilityFormat = null;
                 game.probability = null;
             }
+        }
+
+        function generateRandomBool() {
+            return Math.random() >= 0.5;
+        }
+
+        function getRandomColor() {
+            var randomBool = generateRandomBool();
+            return randomBool ? "red" : "black";
         }
 
         return {
@@ -57,6 +71,12 @@
                     maxTries : 0,
                     probability : 0,
                     probabilityFormat : 0,
+                    currentBet : 0,
+                    currentRound : 0,
+                    totalWonRounds: 0,
+                    earnings: 0,
+                    roundHistory : [],
+                    gameOver : false
                 };
             },
             updateData : function() {
@@ -83,11 +103,58 @@
                     maxBet : maxBetValidated,
                     hasErrors : !initialBetValidated || !targetValidated || !maxBetValidated
                 }
+            },
+            startGame : function() {
+                game.currentBet = game.initialBet;
+                game.currentRound = 1;
+            },
+            playBet : function(color) {
+                if (game.gameOver) return;
+
+                var randomColor = getRandomColor();
+                var betWon = randomColor === color;
+                var gameWon = false;
+                var roundContinue = false;
+                var betResult = null;
+                var gameOver = false;
+
+                if (betWon) {
+                    game.earnings += game.initialBet;
+                    gameWon = game.earnings >= game.target;
+                    game.totalWonRounds++;
+                    if (!gameWon) {
+                        game.currentRound++;
+                        game.currentBet = game.initialBet;
+                        game.currentTries = game.maxTries;
+                        game.roundHistory = [];
+                    } else {
+                        game.gameOver = true;
+                    }
+                } else {
+                    game.currentTries--;
+                    if (game.currentTries > 0) {
+                        game.currentBet *= 2;
+                        roundContinue = true;
+                        game.roundHistory.push(betResult.color);
+                    } else {
+                        gameOver = true;
+                        game.gameOver = true;
+                    }
+                }
+                betResult = {
+                    color : randomColor,
+                    userColor : color,
+                    betWon : betWon,
+                    gameWon : gameWon,
+                    roundContinue : roundContinue,
+                    gameOver : gameOver
+                };
+                return betResult;
             }
         }
     });
 
-    app.controller("GameController", function($scope, $gameService) {
+    app.controller("GameController", function($scope, $gameService, $location) {
         $scope.init = function() {
             $gameService.reset();
             $scope.game = $gameService.get();
@@ -110,9 +177,20 @@
                 $scope.validation.target = "The maximum bet must be a number greater than 0";
             }
             if (!validation.hasErrors) {
-                // start game
+                $location.path("game");
             }
         };
         $scope.validateLimits = $gameService.validateLimits;
+    });
+
+    app.controller("RoundController", function($scope, $gameService) {
+        $scope.init = function() {
+            $scope.game = $gameService.get();
+            $gameService.startGame();
+        };
+
+        $scope.placeBet = function(color) {
+            var result = $gameService.playBet(color);
+        };
     });
 })();

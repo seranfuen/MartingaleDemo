@@ -1,0 +1,17 @@
+<div id="start" ng-init="init()">
+    <h1>Round {{game.currentRound}}</h1>
+    <div id="current-bet-info">
+        <p>Rounds won: {{game.totalWonRounds}}</p>
+        <p>Earnings: {{game.earnings}} € (Target: {{game.target}} €)</p>
+        <p>Tries left: {{ game.currentTries }}</p>
+        <p>Round history: {{ game.roundHistory.join(", ") }}
+        <h2>Current wager (Limit: {{game.maxBet}} €)</h2>
+        <p class="bet-quantity">{{game.currentBet}} €</p>
+        <h2>Choose your next bet</h2>
+        <input type="button" class="red-button" ng-click="placeBet('red')" value="Red" / >
+        <input type="button" class="black-button" ng-click="placeBet('black')" value="Black" / >
+    </div>
+
+    <p>Note: the color is selected using JavaScript's random number generator, which is a pseudo-random number generator. This means the sequence may appear random but is not.
+        However, in a real casino you cannot be sure that it is truly random either</p>
+</div>
