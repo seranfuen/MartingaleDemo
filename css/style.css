@@ -7,6 +7,8 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding: 2em;
+	font-family: Verdana,sans-serif;
+	line-height: 1.5;
 }
 
 .go-button {
@@ -122,4 +124,68 @@ body {
 
 .bad-message {
 	color: red;
+}
+
+#menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: midnightblue;
+}
+
+#menu li {
+    float: left;
+}
+
+#menu li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#menu li a:hover {
+    background-color: darkblue;
+}
+
+
+#setup-game {
+	padding: 12px;
+}
+
+.col-left {
+	width: 30%;
+	float:left;
+}
+
+.col-right {
+	width: 70%;
+	float: left;
+}
+
+.row {
+	clear: both;
+}
+
+.form-row {
+	margin: 20px;
+}
+
+.form-input {
+	display: block;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.setup-form {
+	width: 600px;
+	background-color: whitesmoke;
+	border: 1px darkgray solid;
+	padding: 10px;
+		-webkit-box-shadow: -8px 12px 19px -3px rgba(33,33,51,1);
+	-moz-box-shadow: -8px 12px 19px -3px rgba(33,33,51,1);
+	box-shadow: -8px 12px 19px -3px rgba(33,33,51,1);
 }
