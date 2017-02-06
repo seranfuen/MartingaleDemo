@@ -1,13 +1,42 @@
-<div id="start-intro">
-  <p>The <a href="https://en.wikipedia.org/wiki/Martingale_(betting_system)">Martingale Betting System</a> is one of the best
-    known mathematical fallacies related to gambling</p>
-  <p>If a bet with a chance of 1/2 of winning means that the probability of losing is high, the Martingale system, although
-    reducing the chances of losing, with its exponential growth means that loses will be very heavy. Only with unlimited
-    credit and time can it be a surefire way of becoming rich </p>
-  <p>This simulation allows you to play Martingale games to be able to experiment without risking any money</p>
+<div class="intro">
+  <div id="first-part" roll-down class="hidden">
+    <p>Which roulette sequence is more likely?</p>
+    <table color-roulette class="roulette">
+      <tr>
+        <td class="head">1</td>
+        <td class="black"></td>
+        <td class="black"></td>
+        <td class="black"></td>
+        <td class="black"></td>
+      </tr>
+      <tr>
+        <td class="head">2</td>
+        <td class="black"></td>
+        <td class="red"></td>
+        <td class="black"></td>
+        <td class="red"></td>
+      </tr>
+    </table>
+    <div id="see-answer">
+      <input id="start-game" see-answer class="go-button" type="submit" value="See answer" />
+    </div>
+  </div>
+  <div id="second-part" class="hidden">
+    <p class="center-aligned contrast-color">The answer is: <strong>Both are equally likely!!</strong></p>
+    <p>The <strong>Martingale system</strong>, advocated by many dubious gurus, would have you believe that 2. is a more likely
+      sequence than 1. In reality, both are <strong>equally likely</strong> (1 out of 16). Each outcome has no &quot;memory&quot;
+      of the previous one. There is no magical karma balancing out the state of the universe to make <strong>red</strong>      eventually more likely to appear.
+    </p>
+    <p>
+      Coupled with the fact that there is always a credit limit, the Martingale system will give you some wins that will eventually
+      lead to catastrophical losses.
+    </p>
+    <p>This simulation allows you to try as many times as you want without risking your hard-earned money!</p>
+  </div>
 </div>
 
-<div id="start" ng-init="init()">
+<div id="third-part" class="hidden" ng-init="init()">
+  <h1>Start Game</h1>
   <div id="setup-game">
     <p>You will need to win {{ game.neededRounds }} rounds to get a profit of {{ game.target }} €. The maximum number of bets
       per round is {{ game.maxTries }} before you run out of credit</p>

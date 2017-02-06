@@ -153,8 +153,8 @@
             $gameService.updateData();
             if (previousMaxBet !== $scope.game.maxBet) {
                 $scope.$broadcast("valueUpdated", {
-                    value : "maxBet",
-                    newValue : $scope.game.maxBet
+                    value: "maxBet",
+                    newValue: $scope.game.maxBet
                 })
             }
         });
@@ -170,6 +170,31 @@
             var result = $gameService.playBet(color);
             $scope.$broadcast("betPlaced", result);
         };
+    });
+
+    app.directive("rollDown", function () {
+        return {
+            link: function (scope, element, attr) {
+                $(element).slideDown();
+            }
+        }
+    });
+
+    app.directive("colorRoulette", function () {
+        return {
+            link: function (scope, element, attr) {
+                $(element).find(".black").hover(function () {
+                    $(this).html("Black");
+                }, function () {
+                    $(this).html("");
+                });
+                $(element).find(".red").hover(function () {
+                    $(this).html("Red");
+                }, function () {
+                    $(this).html("");
+                });
+            }
+        }
     });
 
     app.directive("betButtons", function () {
@@ -232,10 +257,28 @@
                         });
                     }
                 });
-                scope.$on("valueUpdated", function(event, args) {
+                scope.$on("valueUpdated", function (event, args) {
                     if (args.value === attr.value) {
                         $(element).slider("option", "value", args.newValue);
                     }
+                });
+            }
+        };
+    });
+
+    app.directive("seeAnswer", function () {
+        return {
+            link: function (scope, element, attr) {
+                $(element).click(function (event) {
+                    event.preventDefault();
+                    $(element).hide();
+                    $("#second-part").slideDown();
+                    setTimeout(function () {
+                        $("#third-part").fadeIn("slow", function () {
+                            var setupPart = $("#setup-game");
+                            $("html, body").animate({ scrollTop: setupPart.offset().top }, "fast");
+                        });
+                    }, 3000);
                 });
             }
         };
