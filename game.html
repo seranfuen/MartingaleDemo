@@ -1,4 +1,4 @@
-<div id="start" ng-init="init()">
+<div id="game-screen" ng-init="init()">
     <h1>Round {{game.currentRound}}</h1>
     <div id="current-bet-info">
         <p>Rounds won: {{game.totalWonRounds}}</p>
@@ -14,3 +14,4 @@
     <p>Note: the color is selected using JavaScript's random number generator, which is a pseudo-random number generator. This means the sequence may appear random but is not.
         However, in a real casino you cannot be sure that it is truly random either</p>
 </div>
+<div class="overlay round-screen"></div>

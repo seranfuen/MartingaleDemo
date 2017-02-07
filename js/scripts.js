@@ -158,10 +158,23 @@
                 })
             }
         });
+
+        $scope.startGame = function () {
+            $("#welcome-screen").hide({
+                effect : "slide",
+                direction: "down",
+                duration: 500,
+                complete: function() {
+                    $location.url("/game");
+                    $scope.$apply();
+                }
+            });
+        }
     });
 
     app.controller("RoundController", function ($scope, $gameService) {
         $scope.init = function () {
+            $("#game-screen").fadeIn(2000);
             $scope.game = $gameService.get();
             $gameService.startGame();
         };

@@ -1,98 +1,102 @@
-<div class="intro">
-  <div id="first-part" roll-down class="hidden">
-    <p>Which roulette sequence is more likely?</p>
-    <table color-roulette class="roulette">
-      <tr>
-        <td class="head">1</td>
-        <td class="black"></td>
-        <td class="black"></td>
-        <td class="black"></td>
-        <td class="black"></td>
-      </tr>
-      <tr>
-        <td class="head">2</td>
-        <td class="black"></td>
-        <td class="red"></td>
-        <td class="black"></td>
-        <td class="red"></td>
-      </tr>
-    </table>
-    <div id="see-answer">
-      <input id="start-game" see-answer class="go-button" type="submit" value="See answer" />
-    </div>
-  </div>
-  <div id="second-part" class="hidden">
-    <p class="center-aligned contrast-color">The answer is: <strong>Both are equally likely!!</strong></p>
-    <p>The <strong>Martingale system</strong>, advocated by many dubious gurus, would have you believe that 2. is a more likely
-      sequence than 1. In reality, both are <strong>equally likely</strong> (1 out of 16). Each outcome has no &quot;memory&quot;
-      of the previous one. There is no magical karma balancing out the state of the universe to make <strong>red</strong>      eventually more likely to appear.
-    </p>
-    <p>
-      Coupled with the fact that there is always a credit limit, the Martingale system will give you some wins that will eventually
-      lead to catastrophical losses.
-    </p>
-    <p>This simulation allows you to try as many times as you want without risking your hard-earned money!</p>
-  </div>
-</div>
-
-<div id="third-part" class="hidden" ng-init="init()">
-  <h1>Start Game</h1>
-  <div id="setup-game">
-    <p>You will need to win {{ game.neededRounds }} rounds to get a profit of {{ game.target }} €. The maximum number of bets
-      per round is {{ game.maxTries }} before you run out of credit</p>
-    <p>Your chances of success are <strong>{{game.probabilityFormat}}</strong></p>
-
-    <div class="setup-form">
-      <div class="form-row">
-        <div class="col-left">
-          <label title="The initial bet. The higher it is, the more you'll earn per game won, but the more likely you'll go bankrupt"
-            for="initialBet">Initial Bet</label>
-        </div>
-        <div class="col-right">
-          <div id="initial-bet" slider min="10" max="5000" value="initialBet" step="10"></div> <span>{{ game.initialBet | number  }} €</span>
-        </div>
-      </div>
-
-      <div class="row"></div>
-
-      <div class="form-row">
-        <div class="col-left">
-          <label title="The maximum credit line from the casino. If it is higher, the chances are slightly better but by doubling the bet each time, it grows exponentially"
-            for="max-bet">Maximum Bet</label>
-        </div>
-        <div class="col-right">
-          <div id="max-bet" slider min="100" max="100000" value="maxBet" step="100"></div> <span>{{ game.maxBet | number  }} €</span>
-        </div>
-      </div>
-
-      <div class="row"></div>
-
-      <div class="form-row">
-        <div class="col-left">
-          <label title="How much you would like to win. If you'd like to win more than the initial bet, you'll have to play several rounds"
-            for="target">Earnings Target</label>
-        </div>
-        <div class="col-right">
-          <div id="target" slider min="100" max="200000" value="target" step="100" watch="true"></div> <span>{{ game.target | number  }} €</span>
-        </div>
-      </div>
-
-      <div class="row"></div>
-
-      <div class="form-row">
-        <div class="col-left">
-          <label title="If this was an investment, what would the yield be? You sure can beat the S&P 500. Or can you?" for="roi">Expected return on investment</label>
-        </div>
-        <div class="col-right">
-          <input id="roi" ng-model="game.roiFormat" readonly />
-        </div>
-      </div>
-
-      <div class="row"></div>
-
-      <div class="form-row form-input">
-        <input id="start-game" ng-click="startGame()" class="go-button" type="submit" value="Start Game" />
+<div id="welcome-screen">
+  <div class="intro">
+    <div id="first-part" roll-down class="hidden">
+      <p>Which roulette sequence is more likely?</p>
+      <table color-roulette class="roulette">
+        <tr>
+          <td class="head">1</td>
+          <td class="black"></td>
+          <td class="black"></td>
+          <td class="black"></td>
+          <td class="black"></td>
+        </tr>
+        <tr>
+          <td class="head">2</td>
+          <td class="black"></td>
+          <td class="red"></td>
+          <td class="black"></td>
+          <td class="red"></td>
+        </tr>
+      </table>
+      <div id="see-answer">
+        <input id="start-game" see-answer class="go-button" type="submit" value="See answer" />
       </div>
     </div>
+    <div id="second-part" class="hidden">
+      <p class="center-aligned contrast-color">The answer is: <strong>Both are equally likely!!</strong></p>
+      <p>The <strong>Martingale system</strong>, advocated by many dubious gurus, would have you believe that 2. is a more likely
+        sequence than 1. In reality, both are <strong>equally likely</strong> (1 out of 16). Each outcome has no &quot;memory&quot;
+        of the previous one. There is no magical karma balancing out the state of the universe to make
+        <strong>red</strong> eventually more likely to appear.
+      </p>
+      <p>
+        Coupled with the fact that there is always a credit limit, the Martingale system will give you some wins that will eventually
+        lead to catastrophical losses.
+      </p>
+      <p>This simulation allows you to try as many times as you want without risking your hard-earned money!</p>
+    </div>
+  </div>
+
+  <div id="third-part" class="hidden" ng-init="init()">
+    <h1>Start Game</h1>
+    <div id="setup-game">
+      <p>You will need to win {{ game.neededRounds }} rounds to get a profit of {{ game.target }} €. The maximum number of bets
+        per round is {{ game.maxTries }} before you run out of credit</p>
+      <p>Your chances of success are <strong>{{game.probabilityFormat}}</strong></p>
+
+      <div class="setup-form">
+        <div class="form-row">
+          <div class="col-left">
+            <label title="The initial bet. The higher it is, the more you'll earn per game won, but the more likely you'll go bankrupt"
+              for="initialBet">Initial Bet</label>
+          </div>
+          <div class="col-right">
+            <div id="initial-bet" slider min="10" max="2000" value="initialBet" step="10"></div> <span>{{ game.initialBet | number  }} €</span>
+          </div>
+        </div>
+
+        <div class="row"></div>
+
+        <div class="form-row">
+          <div class="col-left">
+            <label title="The maximum credit line from the casino. If it is higher, the chances are slightly better but by doubling the bet each time, it grows exponentially"
+              for="max-bet">Maximum Bet</label>
+          </div>
+          <div class="col-right">
+            <div id="max-bet" slider min="100" max="5000" value="maxBet" step="100"></div> <span>{{ game.maxBet | number  }} €</span>
+          </div>
+        </div>
+
+        <div class="row"></div>
+
+        <div class="form-row">
+          <div class="col-left">
+            <label title="How much you would like to win. If you'd like to win more than the initial bet, you'll have to play several rounds"
+              for="target">Earnings Target</label>
+          </div>
+          <div class="col-right">
+            <div id="target" slider min="100" max="20000" value="target" step="100" watch="true"></div> <span>{{ game.target | number  }} €</span>
+          </div>
+        </div>
+
+        <div class="row"></div>
+
+        <div class="form-row">
+          <div class="col-left">
+            <label title="If this was an investment, what would the yield be? You sure can beat the S&P 500. Or can you?" for="roi">Expected return on investment</label>
+          </div>
+          <div class="col-right">
+            <input id="roi" ng-model="game.roiFormat" readonly />
+          </div>
+        </div>
+
+        <div class="row"></div>
+
+        <div class="form-row form-input">
+          <input id="start-game" ng-click="startGame()" class="go-button" type="submit" value="Start Game" />
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<div class="overlay round-screen"></div>
