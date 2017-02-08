@@ -1,17 +1,20 @@
-<div id="game-screen" ng-init="init()">
-    <h1>Round {{game.currentRound}}</h1>
-    <div id="current-bet-info">
-        <p>Rounds won: {{game.totalWonRounds}}</p>
-        <p>Earnings: {{game.earnings}} € (Target: {{game.target}} €)</p>
-        <p>Tries left: {{ game.currentTries }}</p>
-        <p>Round history: {{ game.roundHistory.join(", ") }}
-        <h2>Current wager (Limit: {{game.maxBet}} €)</h2>
-        <p class="bet-quantity">{{game.currentBet}} €</p>
-        <h2>Choose your next bet</h2>
-        <div id="game-controls" bet-buttons></div>
-    </div>
+<div id="game-screen-wrapper">
+    <div id="game-screen" class="hidden round-screen" ng-init="init()">
+        <h1>Round {{game.currentRound}}</h1>
+        <div id="current-bet-info">
+            <p>Rounds won: {{game.totalWonRounds}}</p>
+            <p>Earnings: {{game.earnings}} € (Target: {{game.target}} €)</p>
+            <p>Tries left: {{ game.currentTries }}</p>
+            <p>Round history: {{ game.roundHistory.join(", ") }}
+                <h2>Current wager (Limit: {{game.maxBet}} €)</h2>
+                <p class="bet-quantity">{{game.currentBet}} €</p>
+                <h2>Choose your next bet</h2>
+                <div id="game-controls" bet-buttons></div>
+        </div>
 
-    <p>Note: the color is selected using JavaScript's random number generator, which is a pseudo-random number generator. This means the sequence may appear random but is not.
-        However, in a real casino you cannot be sure that it is truly random either</p>
+        <p class="footnote">Note: the color is selected using JavaScript's random number generator, which is a pseudo-random number generator.
+            This means the sequence may appear random but mathematically/logically is not. However, in a real casino you can never be completely sure that each outcome is truly random!
+            truly random either</p>
+    </div>
 </div>
 <div class="overlay round-screen"></div>

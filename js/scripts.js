@@ -174,7 +174,7 @@
 
     app.controller("RoundController", function ($scope, $gameService) {
         $scope.init = function () {
-            $("#game-screen").fadeIn(2000);
+            $("#game-screen").slideDown(800);
             $scope.game = $gameService.get();
             $gameService.startGame();
         };
