@@ -30,13 +30,7 @@ html, body {
 }
 
 .red-button {
-	-moz-box-shadow:inset 0px 1px 0px 0px #cf866c;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #cf866c;
-	box-shadow:inset 0px 1px 0px 0px #cf866c;
 	background-color:#e32d00;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
 	border:1px solid #942911;
 	display:inline-block;
 	cursor:pointer;
@@ -56,13 +50,7 @@ html, body {
 }
 
 .black-button {
-	-moz-box-shadow:inset 0px 1px 0px 0px #302c2b;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #302c2b;
-	box-shadow:inset 0px 1px 0px 0px #302c2b;
 	background-color:#000000;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
 	border:1px solid #2e2e2e;
 	display:inline-block;
 	cursor:pointer;
@@ -74,17 +62,15 @@ html, body {
 	text-shadow:0px 1px 0px #292321;
 }
 .black-button:hover {
-	background-color:#4a4a4a;
+	background-color:#292321;
 }
 .black-button:active {
 	position:relative;
 	top:1px;
 }
 
-#current-bet-info {
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
+#current-bet-info > p {
+	margin: 0px;
 }
 
 .bet-quantity {
@@ -97,10 +83,6 @@ html, body {
 	border: 3px solid black;
 	padding: 5px;
 
-}
-
-#game-controls {
-	height: 150px;
 }
 
 #result-message {
@@ -312,3 +294,31 @@ html, body {
 	  font-size: 0.8em;
 	  font-style: italic;
   }
+
+#result-window {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+	z-index: 5000;
+}
+
+.message {
+	top: 50%;
+	left: 50%;
+	width: 60%;
+	min-width: 400px;
+	font-size: 5em;
+	position: relative;
+	transform: translate(-50%, -50%);
+	background-color: #f1c40f;
+}
+
+.bet-won {
+	color: green;
+}
+
+.bet-lost {
+	color: black;
+}
