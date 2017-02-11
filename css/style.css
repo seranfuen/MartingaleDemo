@@ -74,15 +74,14 @@ html, body {
 }
 
 .bet-quantity {
-	width: 150px;
-	margin-top: 0px;
+	max-width: 400px;
 	margin-left: auto;
 	margin-right: auto;
 	font-size: 30px;
 	font-weight: bold;
-	border: 3px solid black;
-	padding: 5px;
-
+	border: 3px solid white;
+	padding: 10px;
+	display: block-inline;
 }
 
 #result-message {
@@ -250,75 +249,92 @@ html, body {
 }
 
 .round-screen {
-	background-color: #3498db;
+	background-color: #2c3e50;
 }
 
-  .overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    z-index: -1000;
-  }
-
-  #welcome-screen {
-	  z-index: 100;
-  }
-
-  #game-screen-wrapper {
-      height: 100%;
-	  width: 100%;
-	  margin-left: auto;
-	  margin-right: auto;
-	  position: fixed;
-  }
-
-  #game-screen {
-	  padding: 5em 2em 5em 2em;
-	  background-color: #9b59b6;
-	  width: 100%;
-	  max-width: 1200px;
-	  margin-left: auto;
-	  margin-right: auto;
-	  color: black;
-	  position: absolute;
-      top: 50%;
-	  left: 50%;
-      transform: translate(-50%, -50%);
-	  text-align: center;
-	  border: black 1px solid;
-  }
-
-  .footnote {
-	  font-size: 0.8em;
-	  font-style: italic;
-  }
-
-#result-window {
+.overlay {
 	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: -1000;
+}
+
+#welcome-screen {
+	z-index: 100;
+}
+
+#game-screen-wrapper {
 	height: 100%;
 	width: 100%;
-	text-align: center;
-	vertical-align: middle;
-	z-index: 5000;
+	margin-left: auto;
+	margin-right: auto;
+	position: fixed;
 }
 
-.message {
-	top: 50%;
+#game-screen {
+	padding: 5em 2em 5em 2em;
+	width: 100%;
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	color: white;
+	position: absolute;
 	left: 50%;
-	width: 60%;
+	transform: translate(-50%, 0);
+	text-align: center;
+}
+
+#footnote {
+	position: absolute;
+	font-size: 0.8em;
+	font-style: italic;
+	top: 100%;
+	text-align: center;
+	padding: 30px;
+	color: white;
+	transform: translate(0, -100%);
+}
+
+#game-status-panel {
+	height: 200px;
+	width: 100%;
 	min-width: 400px;
-	font-size: 5em;
+	margin-left: auto;
+	margin-right: auto;
 	position: relative;
-	transform: translate(-50%, -50%);
-	background-color: #f1c40f;
+	background-color: #34495e;
+	padding: 10px 0 10px 0;
 }
 
-.bet-won {
-	color: green;
+#result-message {
+	font-size: 6em;
+	width: 100%;
+	max-width: 1200px;
+	color: white;
+	border: 2px solid white;
+	border-top: none;
+	position: fixed;
+	top: 0;
+	background: #472c50;
+	height: auto;
+	left: 50%;
+	transform: translate(-50%, 0);
+	text-align: center;
+	display: none;
 }
 
-.bet-lost {
-	color: black;
+#result-message p {
+	margin: 0px;
+	padding-bottom: 20px;
+}
+
+#game-status {
+	color: white;
+	text-align: center;
+}
+
+#game-status h1 {
+	font-size: 3em;
 }

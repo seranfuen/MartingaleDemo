@@ -212,17 +212,15 @@
 
     app.directive("betResult", function() {
         return {
-            restrict : "E", 
+            restrict : "A", 
             scope : true,
-            templateUrl: "result.html",
             link: function (scope, element, attr) {
-                $(element).hide();
                 scope.$on("betPlaced", function(events, args) {
                     scope.message = args.color.charAt(0).toUpperCase() + args.color.slice(1) + ". " + (args.betWon ? "You win" : "You lose");
                     scope.betResultClass = args.betWon ? "bet-won" : "bet-lost";
-                    $(element).fadeIn("fast", function() {
+                    $(element).slideDown("fast", function() {
                         window.setTimeout(function() {
-                            $(element).fadeOut("fast");
+                            $(element).slideUp("fast");
                         }, 1000);
                     });
                 });
