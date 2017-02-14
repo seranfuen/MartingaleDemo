@@ -211,17 +211,39 @@
     });
 
     app.directive("betResult", function() {
+
+        function appendToColor(args, message) {
+            var color = args.color.charAt(0).toUpperCase() + args.color.slice(1);
+            return color + ". " + message;
+        }
+
+        function getBetResultMessage(args) {
+            if (args.gameWon) {
+                return appendToColor(args, "You won the game!");
+            } 
+            else if (args.gameOver) {
+                return appendToColor(args, "You overran your credit limit! You lost!");
+            }
+            else if (args.betWon) {
+                return appendToColor(args, "You won!");
+            } else {
+                return appendToColor(args, "No luck! You can still try");
+            }
+        }
+
         return {
             restrict : "A", 
             scope : true,
             link: function (scope, element, attr) {
                 scope.$on("betPlaced", function(events, args) {
-                    scope.message = args.color.charAt(0).toUpperCase() + args.color.slice(1) + ". " + (args.betWon ? "You win" : "You lose");
-                    scope.betResultClass = args.betWon ? "bet-won" : "bet-lost";
+                    scope.message =  getBetResultMessage(args);
+                    scope.messageClass = args.betWon ? "good-message" : "bad-message";
                     $(element).slideDown("fast", function() {
-                        window.setTimeout(function() {
-                            $(element).slideUp("fast");
-                        }, 1000);
+                        if (!args.gameOver) {
+                            window.setTimeout(function() {
+                                $(element).slideUp("fast");
+                            }, 1000);
+                        }
                     });
                 });
             }

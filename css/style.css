@@ -94,7 +94,7 @@ html, body {
 }
 
 .bad-message {
-	color: red;
+	color: orangered;
 }
 
 #menu ul {
@@ -309,7 +309,7 @@ html, body {
 }
 
 #result-message {
-	font-size: 6em;
+	font-size: 4em;
 	width: 100%;
 	max-width: 1200px;
 	color: white;
