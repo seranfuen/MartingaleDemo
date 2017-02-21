@@ -1,7 +1,5 @@
+<p bet-result id="result-message" ng-class="messageClass">{{message}}</p>
 <div id="game-status-panel">
-    <div bet-result id="result-message">
-        <p ng-class="messageClass">{{message}}</p>
-    </div>
     <div id="game-status">
         <h1>Round {{game.currentRound}}</h1>
         <p>You have won {{game.earnings}} €. {{game.target - game.earnings}} € left </p>
@@ -9,7 +7,7 @@
 </div>
 <div id="game-screen" class="hidden round-screen" ng-init="init()">
     <h1>Current wager</h1>
-    <div class="bet-quantity">
+    <div id="bet-quantity">
         <p>{{game.currentBet}} € / Max {{game.maxBet}} €</p>
     </div>
     <h2>Choose your next bet ({{ game.currentTries }} tries left)</h2>
@@ -20,4 +18,4 @@
         means the sequence may appear random but mathematically/logically is not. However, in a real casino you can never
         be completely sure that each outcome is truly random! truly random either</p>
 </div>
-<div class="overlay round-screen"></div>
+<div class="overlay"></div>

@@ -161,10 +161,10 @@
 
         $scope.startGame = function () {
             $("#welcome-screen").hide({
-                effect : "slide",
+                effect: "slide",
                 direction: "down",
                 duration: 500,
-                complete: function() {
+                complete: function () {
                     $location.url("/game");
                     $scope.$apply();
                 }
@@ -174,7 +174,7 @@
 
     app.controller("RoundController", function ($scope, $gameService) {
         $scope.init = function () {
-            $("#game-screen").slideDown(800);
+            $("#game-screen").fadeIn(800);
             $scope.game = $gameService.get();
             $gameService.startGame();
         };
@@ -185,32 +185,15 @@
         };
     });
 
-    app.directive("rollDown", function () {
+    app.directive("slideSideways", function () {
         return {
             link: function (scope, element, attr) {
-                $(element).slideDown();
+                $(element).toggle("slide", { direction: attr.slideSideways }, 500);
             }
         }
     });
 
-    app.directive("colorRoulette", function () {
-        return {
-            link: function (scope, element, attr) {
-                $(element).find(".black").hover(function () {
-                    $(this).html("Black");
-                }, function () {
-                    $(this).html("");
-                });
-                $(element).find(".red").hover(function () {
-                    $(this).html("Red");
-                }, function () {
-                    $(this).html("");
-                });
-            }
-        }
-    });
-
-    app.directive("betResult", function() {
+    app.directive("betResult", function () {
 
         function appendToColor(args, message) {
             var color = args.color.charAt(0).toUpperCase() + args.color.slice(1);
@@ -220,7 +203,7 @@
         function getBetResultMessage(args) {
             if (args.gameWon) {
                 return appendToColor(args, "You won the game!");
-            } 
+            }
             else if (args.gameOver) {
                 return appendToColor(args, "You overran your credit limit! You lost!");
             }
@@ -232,15 +215,15 @@
         }
 
         return {
-            restrict : "A", 
-            scope : true,
+            restrict: "A",
+            scope: true,
             link: function (scope, element, attr) {
-                scope.$on("betPlaced", function(events, args) {
-                    scope.message =  getBetResultMessage(args);
+                scope.$on("betPlaced", function (events, args) {
+                    scope.message = getBetResultMessage(args);
                     scope.messageClass = args.betWon ? "good-message" : "bad-message";
-                    $(element).slideDown("fast", function() {
+                    $(element).slideDown("fast", function () {
                         if (!args.gameOver) {
-                            window.setTimeout(function() {
+                            window.setTimeout(function () {
                                 $(element).slideUp("fast");
                             }, 1000);
                         }
@@ -314,24 +297,6 @@
                     if (args.value === attr.value) {
                         $(element).slider("option", "value", args.newValue);
                     }
-                });
-            }
-        };
-    });
-
-    app.directive("seeAnswer", function () {
-        return {
-            link: function (scope, element, attr) {
-                $(element).click(function (event) {
-                    event.preventDefault();
-                    $(element).hide();
-                    $("#second-part").slideDown();
-                    setTimeout(function () {
-                        $("#third-part").fadeIn("slow", function () {
-                            var setupPart = $("#setup-game");
-                            $("html, body").animate({ scrollTop: setupPart.offset().top }, "fast");
-                        });
-                    }, 3000);
                 });
             }
         };
