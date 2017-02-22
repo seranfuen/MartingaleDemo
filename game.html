@@ -18,4 +18,10 @@
         means the sequence may appear random but mathematically/logically is not. However, in a real casino you can never
         be completely sure that each outcome is truly random! truly random either</p>
 </div>
-<div class="overlay"></div>
+<div class="overlay overlay-background"></div>
+<div id="game-over-overlay" ng-class="gameOverClass" class="overlay overlay-dark"></div>
+<div id="game-over" ng-class="gameOverClass" class="hidden">
+    <h1>Game over</h1>
+    <p id="game-result">{{gameOverMessage}}</p>
+    <input id="start-again" ng-click="restartGame()" class="go-button" type="submit" value="Start Again" />
+</div>

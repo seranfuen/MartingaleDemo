@@ -172,17 +172,38 @@
         }
     });
 
-    app.controller("RoundController", function ($scope, $gameService) {
+    app.controller("RoundController", function ($scope, $gameService, $location) {
         $scope.init = function () {
-            $("#game-screen").fadeIn(800);
             $scope.game = $gameService.get();
-            $gameService.startGame();
+            $scope.gameOverClass = "hidden";
+            if ($scope.game === null) {
+                $location.url("/")
+            } else {
+                $("#game-screen").fadeIn(800);
+                $gameService.startGame();
+            }
         };
+
+        $scope.restartGame = function() {
+            $location.url("/");
+        }
 
         $scope.placeBet = function (color) {
             var result = $gameService.playBet(color);
             $scope.$broadcast("betPlaced", result);
+            if (result.gameOver) {
+                $scope.gameOverClass = "";
+                $scope.gameOverMessage = GetGameOverMessage(result.gameWon);
+            }
         };
+
+        function GetGameOverMessage(gameWon) {
+            if (gameWon) {
+                return "You won the game! You got " + $scope.game.target + " €";
+            } else {
+                return "You lost! Now you are in debt for " + $scope.game.currentBet + " €";
+            }
+        }
     });
 
     app.directive("slideSideways", function () {
